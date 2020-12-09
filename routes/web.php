@@ -16,6 +16,14 @@ Route::get('/', function () {
 });
 
 //home page route
-Route::get('/home', function(){
-    return view('home');
+Route::get('/visitor', function(){
+    return view('visitor');
+});
+//voucher page route
+Route::get('/voucher', function(){
+    return view('voucher');
+});
+//user page route
+Route::get('/users', function(){
+    return view('user');
 });

@@ -30,13 +30,14 @@
               <li class="nav-item">
                 <a class="nav-link" href="http://localhost:8000/users">Usuários</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8000/login">Sair</a>
+              </li>
             </ul>
             
           </div>
         </nav>
         <div class="container-fluid">
-             
-          
           <div class="row">
             <div class="col">
               <div class="card">

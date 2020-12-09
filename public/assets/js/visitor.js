@@ -6,3 +6,10 @@ $(document).ready(function () {
         });
     });
 });
+
+$(document).ready(function(){
+    $('#myTable').dataTable({
+        "infoEmpty":      "Mostrando 0 a 0 de 0 registros",
+        "infoFiltered":   "(filtered from _MAX_ total entries)",
+    });
+});

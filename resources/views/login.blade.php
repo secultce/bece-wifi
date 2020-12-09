@@ -3,41 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('site/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/login.css')}}">
     <title>Document</title>
 </head>
-<!-- <style>
-    input.btn.btn-info.btn-md {
-    background-color: green;
-}
-</style> -->
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-<!------ Include the above in your HEAD tag ---------->
-
+<body>
 <section id="login">
     <div class="container">
     	<div class="row">
-    	    <div class="col-xs-12">
+    	    <div class="col-xl-12">
         	    <div class="form-wrap">
-                <h1>Log in with your email account</h1>
+                <div id="img-div">
+                    <img id="img" src="{{asset('assets/img/secult.png')}}" width="300px" height="150px">
+                </div>
+                <h1>Entre com sua conta de email</h1>
                     <form role="form" action="javascript:;" method="post" id="login-form" autocomplete="off">
                         <div class="form-group">
                             <label for="email" class="sr-only">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="somebody@example.com">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="usuario@example.com">
                         </div>
                         <div class="form-group">
                             <label for="key" class="sr-only">Password</label>
-                            <input type="password" name="key" id="key" class="form-control" placeholder="Password">
+                            <input type="password" name="key" id="key" class="form-control" placeholder="Senha">
                         </div>
                         <div class="checkbox">
                             <span class="character-checkbox" onclick="showPassword()"></span>
-                            <span class="label">Show password</span>
+                            <span class="label">Mostrar a senha</span>
                         </div>
-                        <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Log in">
+                        <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Conecte-se">
                     </form>
-                    <a href="javascript:;" class="forget" data-toggle="modal" data-target=".forget-modal">Forgot your password?</a>
+                    <a href="javascript:;" class="forget" data-toggle="modal" data-target=".forget-modal">Esqueci minha senha?</a>
                     <hr>
         	    </div>
     		</div> <!-- /.col-xs-12 -->
@@ -67,13 +62,9 @@
 	</div> <!-- /.modal-dialog -->
 </div> <!-- /.modal -->
 
-<footer id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <p>Page © - 2014</p>
-                <p>Powered by <strong><a href="http://www.facebook.com/tavo.qiqe.lucero" target="_blank">TavoQiqe</a></strong></p>
-            </div>
-        </div>
-    </div>
-</footer>
+    <script src="{{asset('site/jquery.js')}}"></script>
+    <script src="{{asset('site/bootstrap.js')}}"></script>
+    <script src="{{ asset('assets/js/home.js')}}"></script>
+    <script src="{{ asset('assets/js/login.js')}}"></script>
+</body>
+</html>

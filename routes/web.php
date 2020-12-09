@@ -15,7 +15,14 @@ Route::get('/', function () {
     return view('login');
 });
 
+<<<<<<< HEAD
 Route::get('/login', function() {
     return view('login');
 });
 
+=======
+//home page route
+Route::get('/home', function(){
+    return view('home');
+});
+>>>>>>> 1963f757c234573f64891afe4c50108006065f21

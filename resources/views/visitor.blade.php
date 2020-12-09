@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('site/style.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css')}}"> 
+    <link rel="stylesheet" href="{{ asset('assets/css/visitor.css')}}"> 
     <title>Visitor Page</title>
 </head>
 <body>
@@ -41,8 +41,49 @@
             <div class="col">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <table class="table">
+                  <div class="container">
+                    <div class="row col-md-12 col-md-offset-2 custyle">
+                      
+                        <div class="col-md-6" id="search-id">
+                          <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Pesquisar(Nome, CPF, ID)">
+                          <br>
+                        </div>
+                        <div class="col-md-6" id="add-visitor">
+                          <a href="#" class="btn btn-primary btn-xs pull-right" ><b>+</b>Cadastrar Visitantes</a>
+                        </div>
+                      
+                    <table class="table table-striped custab" id="myTable">
+                        <thead>
+                       
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th class="text-center">Ações</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td>1</td>
+                                <td>News</td>
+                                <td>News Cate</td>
+                                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Products</td>
+                                <td>Main Products</td>
+                                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Blogs</td>
+                                <td>Parent Blogs</td>
+                                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                            </tr>
+                    </table>
+                    </div>
+                </div>
+                  {{-- <table class="table">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
@@ -71,7 +112,7 @@
                         <td>@twitter</td>
                       </tr>
                     </tbody>
-                  </table>
+                  </table> --}}
                 </div>
               </div>
             </div>
@@ -81,7 +122,7 @@
 
     <script src="{{asset('site/jquery.js')}}"></script>
     <script src="{{asset('site/bootstrap.js')}}"></script>
-    <script src="{{ asset('assets/js/home.js')}}"></script>
+    <script src="{{ asset('assets/js/visitor.js')}}"></script>
         
 </body>
 </html>

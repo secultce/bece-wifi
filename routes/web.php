@@ -22,7 +22,21 @@ Route::get('/login', function() {
 
 =======
 //home page route
+<<<<<<< HEAD
 Route::get('/home', function(){
     return view('home');
 });
 >>>>>>> 1963f757c234573f64891afe4c50108006065f21
+=======
+Route::get('/visitor', function(){
+    return view('visitor');
+});
+//voucher page route
+Route::get('/voucher', function(){
+    return view('voucher');
+});
+//user page route
+Route::get('/users', function(){
+    return view('user');
+});
+>>>>>>> 83fdb9ed99605c78c3c4e5a1614dffaf0d87aa33

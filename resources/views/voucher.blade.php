@@ -6,30 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('site/style.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/home.css')}}"> 
-    <title>Home Page</title>
+    <title>Voucher Page</title>
 </head>
 <body>
     <div id="wrapper" class="animate">
         <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
           <span class="navbar-toggler-icon leftmenutrigger"></span>
-          <a class="navbar-brand" href="#">LOGO</a>
+          <a class="navbar-brand" href="#">SECULT PF SENSE</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav animate side-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#">Home
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Side Menu Items</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8000/visitor">Visitantes
+                      <span class="sr-only">(current)</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8000/voucher">Voucher</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8000/users">Usuários</a>
+                  </li>
             </ul>
             
           </div>

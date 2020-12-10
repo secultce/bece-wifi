@@ -25,11 +25,11 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8000/voucher">Voucher</a>
+                <a class="nav-link" href="http://localhost:8000/voucher">Vouchers</a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a class="nav-link" href="http://localhost:8000/users">Usuários</a>
-              </li>
+              </li> --}}
               <li class="nav-item">
                 <a class="nav-link" href="http://localhost:8000/login">Sair</a>
               </li>
@@ -40,8 +40,6 @@
         <div class="container-fluid">
           <div class="container">
             <div class="row">
-           
-            
                 <div class="col-md-12 col-md-offset-1">
                     <div class="panel panel-default panel-table">
                       <div class="panel-heading">
@@ -49,8 +47,15 @@
                           <div class="col col-xs-6">
                             <h3 class="panel-title">Registro de Vouchers</h3>
                           </div>
-                          <div class="col col-xs-6 text-right">
-                            <a href="#" class="btn btn-primary btn-xs pull-right" id="add-visitor"><b>+</b>Importar Voucher</a>
+                          <div class="col col-xs-6 text-right">   
+                            {{-- <a href="#" class="btn btn-primary btn-xs pull-right" id="add-visitor"></a> --}}
+                                                    
+                            
+   
+                          <label class="btn btn-primary" for="my-file-selector">
+    <input id="my-file-selector" type="file" class="d-none">
+    Importar Voucher
+</label>
                           </div>
                         </div>
                       </div>

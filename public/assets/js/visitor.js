@@ -13,3 +13,17 @@ $(document).ready(function(){
         "infoFiltered":   "(filtered from _MAX_ total entries)",
     });
 });
+
+$(document).ready(function($){
+
+  $(".form-control.cpfOuCnpj").mask("999.999.999-99");
+  $('.form-control.cpfOuCnpj').blur(function () {
+    var id=$(this).attr("id");
+    var val=$(this).val();
+    var pattern = new RegExp(/[0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2}/);
+
+    if(val.match(pattern) == null){
+      $("#"+id+"_error").html("Digite um CPF válido");
+    }
+  });
+});

@@ -108,6 +108,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        <form method="post" action="">
         <div class="modal-body mx-3">
           <div class="form-group">
             <label for="nomeVisitante" class="text-info">Nome do Visitante:</label><br>
@@ -116,18 +117,20 @@
               <input type="text" class="form-control" id="nome" name="nome" placeholder="Fulano da Silva" required>
             </div>
           </div>
-
-          <div class="form-group">
-            <label for="cpf" class="text-info">CPF:</label><br>
-            <div class="input-group mb-2">
-
-              <input type="text" class="form-control cpfOuCnpj" name="cpf" placeholder="xxx.xxx.xxx-xx" required>
+          
+            <div class="form-group">
+              <label for="cpf" class="text-info">CPF:</label><br>
+              <div class="input-group mb-2">
+  
+                <input type="text" class="form-control cpfOuCnpj" name="cpf" placeholder="xxx.xxx.xxx-xx" required>
+              </div>
             </div>
-          </div>
-
-          <div class="text-center">
-            <input type="submit" value="Cadastrar" class="btn btn-info btn-block rounded-0 py-2">
-          </div>
+  
+            <div class="text-center">
+              <input type="submit" value="Cadastrar" class="btn btn-info btn-block rounded-0 py-2">
+            </div>
+          </form>
+          
 
         </div>
       </div>

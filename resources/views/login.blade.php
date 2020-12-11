@@ -31,7 +31,7 @@
                             <span class="label">Mostrar a senha</span>
                         </div>
                         <br>
-                        <a href="http://localhost:8000/visitor" class='btn btn-custom btn-lg btn-block'>
+                        <a href="http://localhost:8000/visitors" class='btn btn-custom btn-lg btn-block'>
                             Conecte-se
                         </a>
                         {{-- <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Conecte-se"> --}}

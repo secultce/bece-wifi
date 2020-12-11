@@ -12,7 +12,7 @@
     <div class="container">
     	<div class="row">
     	    <div class="col-xl-12">
-        	    <div class="form-wrap">
+               <div class="form-wrap">
                 <div id="img-div">
                     <img id="img" src="{{asset('assets/img/secult.png')}}" width="300px" height="150px">
                 </div>
@@ -30,9 +30,13 @@
                             <span class="character-checkbox" onclick="showPassword()"></span>
                             <span class="label">Mostrar a senha</span>
                         </div>
-                        <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Conecte-se">
+                        <br>
+                        <a href="http://localhost:8000/visitor" class='btn btn-custom btn-lg btn-block'>
+                            Conecte-se
+                        </a>
+                        {{-- <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Conecte-se"> --}}
                     </form>
-                    <a href="javascript:;" class="forget" data-toggle="modal" data-target=".forget-modal">Esqueci minha senha?</a>
+                    <!-- <a href="javascript:;" class="forget" data-toggle="modal" data-target=".forget-modal">Esqueci minha senha?</a> -->
                     <hr>
         	    </div>
     		</div> <!-- /.col-xs-12 -->

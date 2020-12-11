@@ -53,9 +53,9 @@
                             
    
                           <label class="btn btn-primary" for="my-file-selector">
-    <input id="my-file-selector" type="file" class="d-none">
-    Importar Voucher
-</label>
+                              <input id="my-file-selector" type="file" class="d-none">
+                              Importar Voucher
+                          </label>
                           </div>
                         </div>
                       </div>
@@ -68,6 +68,7 @@
                                   <th>ID</th>
                                   <th>Voucher</th>
                                   <th>Visitante</th>
+                                  <th>CPF</th>
                                   <th>Data Importação</th>
                                   <th>Data Voucher</th>
                                   <th>Ativo</th>
@@ -77,10 +78,12 @@
                                   <td>1</td>
                                   <td>qwe54qwa1sdas2d156qw4eqw546</td>
                                   <td>Mario</td>
+                                  <td>0000000000000</td>
                                   <td>11-07-2020</td>
                                   <td>11-08-2021</td>
                                   <td>Ativo</td>
                               </tr>
+                               
                               
 
                       </table>

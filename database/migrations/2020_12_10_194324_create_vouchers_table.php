@@ -17,9 +17,7 @@ class CreateVouchersTable extends Migration
             $table->bigIncrements('id');
             $table->string('id_visitor')->nullable();
             $table->string('voucher')->unique();
-            $table->timestamp('date_voucher');
-            $table->timestamp('date_import');
-            $table->boolean('Active');
+            $table->boolean('active');
             $table->timestamps();
         });
     }

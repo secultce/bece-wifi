@@ -18,6 +18,7 @@
                 </div>
                 <h1>Entre com sua conta de email</h1>
                     <form role="form" action="{{url('logincontroller')}}" method="post" id="login-form" autocomplete="off">
+                        @csrf
                         <div class="form-group">
                             <label for="email" class="sr-only">Email</label>
                             <input type="email" name="email" id="email" class="form-control" placeholder="usuario@example.com" value="">

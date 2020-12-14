@@ -11,15 +11,28 @@
 |
 */
 
-Route::get('/', 'LoginController@index');
-Route::get('/login', 'LoginController@index');
+Route::get('/', 'Auth\LoginController@index');
+Route::get('/login', 'Auth\LoginController@index');
+Route::post('/logincontroller', 'Auth\LoginController@enviar');
 Route::get('/vouchers', 'VoucherController@index');
 Route::get('/users', 'UserController@index');
-Route::post('/logincontroller', 'LoginController@enviar');
-Route::get('/visitors', 'VisitorController@index');
+
 Route::post('/visitors', 'VisitorController@store');
 Route::put('/visitors/{id}', 'VisitorController@update');
+
+
+
+Route::group(['middleware'=>'auth.role'], function(){
+    Route::get('/visitors', 'VisitorController@index');
+});
+
+
+
 
 // Route::post('users', 'UserController');
 
 // Route::get('vouchers', 'UserController');
+
+// Auth::routes();
+
+// Route::get('/visitors', 'VisitorController@index')->name('visitor');

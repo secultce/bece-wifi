@@ -12,6 +12,8 @@
 
 <body>
   <div id="wrapper" class="animate">
+      
+    
     <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
       <span class="navbar-toggler-icon leftmenutrigger"></span>
       <a class="navbar-brand" href="#">SECULT PF SENSE</a>
@@ -194,7 +196,7 @@
               <label for="cpf" class="text-info">CPF:</label><br>
               <div class="input-group mb-2">
   
-                <input type="text" class="form-control cpfOuCnpj" name="cpf" placeholder="xxx.xxx.xxx-xx" required>
+                <input type="text" class="form-control cpfOuCnpj" name="cpf" id="cpf" placeholder="xxx.xxx.xxx-xx" required>
               </div>
             </div>
   

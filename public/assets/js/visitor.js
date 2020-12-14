@@ -16,6 +16,7 @@ $(document).ready(function(){
 
 $(document).ready(function($){
 
+  $('.showCPF').mask("999.999.999-99");
   $(".form-control.cpfOuCnpj").mask("999.999.999-99");
   $('.form-control.cpfOuCnpj').blur(function () {
     var id=$(this).attr("id");

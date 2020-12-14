@@ -18,7 +18,6 @@ class CreateVisitorsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('cpf')->unique();
-            $table->timestamp('date_register');
             $table->timestamps();
         });
     }

@@ -13,9 +13,13 @@
 
 Route::get('/', 'LoginController@index');
 Route::get('/login', 'LoginController@index');
-Route::get('/visitors', 'VisitorController@index');
 Route::get('/vouchers', 'VoucherController@index');
 Route::get('/users', 'UserController@index');
+
+
+Route::get('/visitors', 'VisitorController@index');
+Route::post('/visitors', 'VisitorController@store');
+Route::put('/visitors/{id}', 'VisitorController@update');
 
 // Route::post('users', 'UserController');
 

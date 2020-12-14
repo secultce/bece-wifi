@@ -16,6 +16,8 @@ Route::get('/login', 'LoginController@index');
 Route::get('/visitors', 'VisitorController@index');
 Route::get('/vouchers', 'VoucherController@index');
 Route::get('/users', 'UserController@index');
+Route::post('/logincontroller', 'LoginController@enviar');
+
 
 // Route::post('users', 'UserController');
 

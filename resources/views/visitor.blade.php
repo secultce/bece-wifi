@@ -27,7 +27,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="http://localhost:8000/voucher">Vouchers</a>
+            <a class="nav-link" href="http://localhost:8000/vouchers">Vouchers</a>
           </li>
           {{-- <li class="nav-item">
             <a class="nav-link" href="http://localhost:8000/users">Usuários</a>

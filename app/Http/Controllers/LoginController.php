@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -29,7 +30,7 @@ class LoginController extends Controller
         $userPassword = $users[0]['password'];
         $pass = md5($password);
         if($email == $userEmail && $pass == $userPassword ){
-            return view('visitor');
+            return Redirect::to('visitors');
         }else{
             $request->session()->flash('alert-danger', 'Login ou senha não são válidos.');
             return redirect('/login');

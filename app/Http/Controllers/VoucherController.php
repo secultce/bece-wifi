@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Voucher;
 use Illuminate\Http\Request;
 
 class VoucherController extends Controller
@@ -23,7 +24,9 @@ class VoucherController extends Controller
      */
     public function index()
     {
-        return view('voucher');
+        $vouchers = Voucher::with('visitor')->get();
+
+        return view('voucher', ['vouchers' => $vouchers]);
     }
 
     /**

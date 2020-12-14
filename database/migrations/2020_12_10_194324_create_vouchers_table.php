@@ -15,12 +15,12 @@ class CreateVouchersTable extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('id_visitor')->nullable();
+            $table->bigInteger('visitor_id')->nullable()->unsigned();
             $table->string('voucher')->unique();
-            $table->timestamp('date_voucher');
-            $table->timestamp('date_import');
-            $table->boolean('Active');
+            $table->boolean('active');
             $table->timestamps();
+
+            $table->foreign('visitor_id')->references('id')->on('visitors'); 
         });
     }
 

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('site/style.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/visitor.css')}}"> 
-    <title>User Page</title>
+    <title>Vouchers</title>
 </head>
 <body>
     <div id="wrapper" class="animate">
@@ -74,18 +74,17 @@
                                   <th>Ativo</th>
                               </tr>
                           </thead>
+                          @foreach ($vouchers as $v)
                               <tr>
-                                  <td>1</td>
-                                  <td>qwe54qwa1sdas2d156qw4eqw546</td>
-                                  <td>Mario</td>
-                                  <td>0000000000000</td>
-                                  <td>11-07-2020</td>
-                                  <td>11-08-2021</td>
-                                  <td>Ativo</td>
+                                <td>{{ $v->id }}</td>
+                                <td>{{ $v->voucher }}</td>
+                                <td>{{ isset($v->visitor) ? $v->visitor->name: "" }}</td>
+                                <td class="showCPF">{{ isset($v->visitor) ? $v->visitor->cpf: "" }}</td>
+                                <td>{{ date('d-m-Y' , strtotime($v->created_at)) }}</td>
+                                <td>{{ $v->updated_at ? date('d-m-Y' , strtotime($v->updated_at)): "" }}</td>
+                                <td>{{ $v->active ? "Sim": "Não" }}</td>
                               </tr>
-                               
-                              
-
+                          @endforeach
                       </table>
                     
                       </div>
@@ -101,7 +100,7 @@
     <script src="{{asset('site/jquery.js')}}"></script>
     <script src="{{asset('site/dataTables.js')}}"></script>
     <script src="{{asset('site/bootstrap.js')}}"></script>
-    <script src="{{ asset('assets/js/visitor.js')}}"></script>
+    <script src="{{ asset('assets/js/voucher.js')}}"></script>
     <script src="{{ asset('assets/js/home.js')}}"></script>
         
 </body>

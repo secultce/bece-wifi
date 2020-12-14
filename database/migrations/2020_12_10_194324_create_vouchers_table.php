@@ -15,7 +15,8 @@ class CreateVouchersTable extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('id_visitor') ->nullable();
+            $table->string('id_visitor')->nullable();
+            $table->string('voucher')->unique();
             $table->timestamp('date_voucher');
             $table->timestamp('date_import');
             $table->boolean('Active');

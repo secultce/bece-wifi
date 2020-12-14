@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{{ asset('site/style.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/css/visitor.css')}}">
-  <title>User Page</title>
+  <title>Visitantes</title>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="http://localhost:8000/voucher">Vouchers</a>
+            <a class="nav-link" href="http://localhost:8000/vouchers">Vouchers</a>
           </li>
           {{-- <li class="nav-item">
             <a class="nav-link" href="http://localhost:8000/users">Usuários</a>
@@ -45,6 +45,25 @@
 
 
           <div class="col-md-12 col-md-offset-1">
+
+            @if(Request::get('status') == 'success')
+              <div class="alert alert-success" role="alert">
+                {{ Request::get('message') }}    
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>        
+              </div>
+            @endif
+
+            @if(Request::get('status') == 'error')
+              <div class="alert alert-danger" role="alert">
+                {{ Request::get('message') }}    
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>        
+              </div>
+            @endif
+            
             <div class="panel panel-default panel-table">
               <div class="panel-heading">
                 <div class="row">
@@ -53,7 +72,7 @@
                   </div>
                   <div class="col col-xs-6 text-right">
                     <a href="" class="btn btn-primary btn-xs pull-right" id="add-visitor" data-toggle="modal"
-                      data-target="#modalCadastrarUser"><b>+</b>Cadastrar Visitante</a>
+                      data-target="#modalCadastrarUser"><b> + </b>Cadastrar Visitante</a>
                   </div>
                 </div>
               </div>
@@ -69,18 +88,70 @@
                       <th class="text-center">Ações</th>
                     </tr>
                   </thead>
-                  <tr>
-                    <td>1</td>
-                    <td>News</td>
-                    <td>News Cate</td>
-                    <td class="text-center">
-                      <a class='btn btn-info btn-xs' href="#" data-toggle="modal"
-                      data-target="#modalGerarVoucher"><span
-                          class="glyphicon glyphicon-edit"></span> Gerar Novo Voucher</a> <a href="#"
-                        class="btn btn-warning btn-xs" data-toggle="modal"
-                      data-target="#modalEditarUser"><span class="glyphicon glyphicon-remove"></span> Editar</a></td>
-                  </tr>
+                 @if(count($visitors) > 0)
+                  @foreach($visitors as $v)
+                    <tr>
+                      <td>{{ $v->id }}</td>
+                      <td>{{ $v->name }}</td>
+                      <td class="showCPF">{{ $v->cpf }}</td>
+                      <td class="text-center">
+                        <a class='btn btn-info btn-xs' href="#" data-toggle="modal" data-target="#modalGerarVoucher">
+                          <span class="glyphicon glyphicon-edit"></span> 
+                          Gerar Novo Voucher
+                        </a> 
+                          <a href="#" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modalEditarUser-{{$v->id}}">
+                            <span class="glyphicon glyphicon-remove"></span> 
+                            Editar
+                        </a>
+                      </td>
 
+                      <div class="modal fade" id="modalEditarUser-{{$v->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header text-center">
+                              <h4 class="modal-title w-100 font-weight-bold">Editar dados do Visitante</h4>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body mx-3">
+                              <form method="post" action="{{ url("visitors/{$v->id}") }}">
+                                {{ method_field('PUT') }}
+                                {{ csrf_field() }}
+                                <div class="form-group">
+                                  <label for="nomeVisitante" class="text-info">Nome do Visitante:</label><br>
+                                  <div class="input-group mb-2">
+                                    <input type="text" class="form-control" id="nome" name="name" value="{{$v->name}}" required>
+                                  </div>
+                                </div>
+                      
+                                <div class="form-group">
+                                  <label for="cpf" class="text-info">CPF:</label><br>
+                                  <div class="input-group mb-2">
+                      
+                                    <input type="text" class="form-control cpfOuCnpj" name="cpf" value="{{$v->cpf}}" required>
+                                  </div>
+                                </div>
+                      
+                                <div class="text-center">
+                                  <input type="submit" value="Redefinir" class="btn btn-info btn-block rounded-0 py-2">
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </tr>
+                  @endforeach
+                  @else
+                    <tr>
+                      <td colspan="100%"> 
+                        <h4 class="text-center">Nenhum visitante cadastrado</h4>
+                      </td>
+                    </tr>
+                 @endif
 
                 </table>
 
@@ -108,63 +179,30 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        <form method="post" action="{{ url('visitors') }}">
+        @csrf
         <div class="modal-body mx-3">
           <div class="form-group">
             <label for="nomeVisitante" class="text-info">Nome do Visitante:</label><br>
             <div class="input-group mb-2">
 
-              <input type="text" class="form-control" id="nome" name="nome" placeholder="Fulano da Silva" required>
+              <input type="text" class="form-control" id="nome" name="name" placeholder="Fulano da Silva" required>
             </div>
           </div>
-
-          <div class="form-group">
-            <label for="cpf" class="text-info">CPF:</label><br>
-            <div class="input-group mb-2">
-
-              <input type="text" class="form-control cpfOuCnpj" name="cpf" placeholder="xxx.xxx.xxx-xx" required>
-            </div>
-          </div>
-
-          <div class="text-center">
-            <input type="submit" value="Cadastrar" class="btn btn-info btn-block rounded-0 py-2">
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
+          
+            <div class="form-group">
+              <label for="cpf" class="text-info">CPF:</label><br>
+              <div class="input-group mb-2">
   
-  <!--Editar Usuário-->
-   <div class="modal fade" id="modalEditarUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header text-center">
-          <h4 class="modal-title w-100 font-weight-bold">Editar dados do Visitante</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body mx-3">
-          <div class="form-group">
-            <label for="nomeVisitante" class="text-info">Nome do Visitante:</label><br>
-            <div class="input-group mb-2">
-
-              <input type="text" class="form-control" id="nome" name="nome" value="Fulano da Silva" required>
+                <input type="text" class="form-control cpfOuCnpj" name="cpf" placeholder="xxx.xxx.xxx-xx" required>
+              </div>
             </div>
-          </div>
-
-          <div class="form-group">
-            <label for="cpf" class="text-info">CPF:</label><br>
-            <div class="input-group mb-2">
-
-              <input type="text" class="form-control cpfOuCnpj" name="cpf" value="xxx.xxx.xxx-xx" required>
+  
+            <div class="text-center">
+              <input type="submit" value="Cadastrar" class="btn btn-info btn-block rounded-0 py-2">
             </div>
-          </div>
-
-          <div class="text-center">
-            <input type="submit" value="Redefinir" class="btn btn-info btn-block rounded-0 py-2">
-          </div>
+          </form>
+          
 
         </div>
       </div>

@@ -10,25 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('login');
-});
-
-Route::get('/login', function() {
-    return view('login');
-});
 
 
-//home page route
-Route::get('/visitor', function(){
-    return view('visitor');
-});
-//voucher page route
-Route::get('/voucher', function(){
-    return view('voucher');
-});
-//user page route
-Route::get('/users', function(){
-    return view('user');
-});
 
+Route::get('/', 'LoginController@index');
+Route::get('/login', 'LoginController@index');
+Route::get('/vouchers', 'VoucherController@index');
+Route::get('/users', 'UserController@index');
+Route::post('/logincontroller', 'LoginController@enviar');
+
+
+
+Route::get('/visitors', 'VisitorController@index');
+Route::post('/visitors', 'VisitorController@store');
+Route::put('/visitors/{id}', 'VisitorController@update');
+
+// Route::post('users', 'UserController');
+
+// Route::get('vouchers', 'UserController');

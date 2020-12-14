@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Validation\Rules\Unique;
 
 class CreateVisitorsTable extends Migration
 {
@@ -16,8 +17,7 @@ class CreateVisitorsTable extends Migration
         Schema::create('visitors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('cpf');
-            $table->timestamp('date_register');
+            $table->string('cpf')->unique();
             $table->timestamps();
         });
     }

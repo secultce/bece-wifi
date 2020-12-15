@@ -16,15 +16,11 @@ Route::get('/login', 'Auth\LoginController@index');
 Route::post('/logincontroller', 'Auth\LoginController@enviar');
 Route::get('/vouchers', 'VoucherController@index');
 Route::get('/users', 'UserController@index');
+Route::get('/visitors', 'VisitorController@index');
 
 Route::post('/visitors', 'VisitorController@store');
 Route::put('/visitors/{id}', 'VisitorController@update');
 
-
-
-Route::group(['middleware'=>'auth.role'], function(){
-    Route::get('/visitors', 'VisitorController@index');
-});
 
 
 

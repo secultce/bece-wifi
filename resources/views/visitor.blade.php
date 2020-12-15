@@ -24,7 +24,7 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav animate side-nav">
           <li class="nav-item">
-            <a class="nav-link" href="http://localhost:8000/visitor">Visitantes
+            <a class="nav-link" href="http://localhost:8000/visitors">Visitantes
               <span class="sr-only">(current)</span>
             </a>
           </li>

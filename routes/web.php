@@ -21,6 +21,8 @@ Route::get('/visitors', 'VisitorController@index');
 Route::post('/visitors', 'VisitorController@store');
 Route::put('/visitors/{id}', 'VisitorController@update');
 
+Route::post('/vouchers', 'VoucherController@store');
+
 
 
 

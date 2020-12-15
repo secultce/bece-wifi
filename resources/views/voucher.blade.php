@@ -41,6 +41,23 @@
           <div class="container">
             <div class="row">
                 <div class="col-md-12 col-md-offset-1">
+                @if(Request::get('status') == 'success')
+                  <div class="alert alert-success" role="alert">
+                    {{ Request::get('message') }}    
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>        
+                  </div>
+                @endif
+
+                @if(Request::get('status') == 'error')
+                  <div class="alert alert-danger" role="alert">
+                    {{ Request::get('message') }}    
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>        
+                  </div>
+                @endif
                     <div class="panel panel-default panel-table">
                       <div class="panel-heading">
                         <div class="row">
@@ -48,14 +65,11 @@
                             <h3 class="panel-title">Registro de Vouchers</h3>
                           </div>
                           <div class="col col-xs-6 text-right">   
-                            {{-- <a href="#" class="btn btn-primary btn-xs pull-right" id="add-visitor"></a> --}}
-                                                    
-                            
-   
-                          <label class="btn btn-primary" for="my-file-selector">
-                              <input id="my-file-selector" type="file" class="d-none">
-                              Importar Voucher
-                          </label>
+                          <form method="post" action="{{ url('vouchers') }}" enctype="multipart/form-data">
+                            @csrf
+                            <label class="btn btn-primary" for="vouchers">Importar Voucher </label>
+                            <input id="vouchers" name="vouchers" type="file" class="d-none" onchange="this.form.submit()" >
+                          </form>
                           </div>
                         </div>
                       </div>

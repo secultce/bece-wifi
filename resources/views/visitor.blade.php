@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="{{ asset('site/style.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/css/visitor.css')}}">
   <title>Visitantes</title>
@@ -97,7 +98,7 @@
                       <td>{{ $v->name }}</td>
                       <td class="showCPF">{{ $v->cpf }}</td>
                       <td class="text-center">
-                        <a class='btn btn-info btn-xs' href="#" data-toggle="modal" data-target="#modalGerarVoucher">
+                        <a class='btn btn-info btn-xs generateVoucher' href="#" data-toggle="modal" data-visitor-id="{{ $v->id }}" data-target="#modalGerarVoucher">
                           <span class="glyphicon glyphicon-edit"></span> 
                           Gerar Novo Voucher
                         </a> 
@@ -210,20 +211,20 @@
       </div>
     </div>
   </div>
-  <!--MODAL GERAR VOUCHER-->
-   <div class="modal fade" id="modalGerarVoucher" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+   <!--MODAL GERAR VOUCHER-->
+  <div class="modal fade" id="modalGerarVoucher" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header text-center">
-          <h4 class="modal-title w-100 font-weight-bold">Voucher gerado com sucesso!</h4>
+          <h4 class="modal-title w-100 font-weight-bold message-title">Estamos gerando seu voucher!</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body mx-3">
           <div class="text-center">
-            <h3>QEUQWUIDASHDAS456454</h3>
+            <h3 class="message-body">Aguarde...</h3>
           </div>
             
        

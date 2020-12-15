@@ -19,6 +19,7 @@ Route::get('/users', 'UserController@index');
 Route::get('/visitors', 'VisitorController@index');
 
 Route::post('/visitors', 'VisitorController@store');
+Route::put('/visitors/{id}/voucher', 'VisitorController@voucher');
 Route::put('/visitors/{id}', 'VisitorController@update');
 
 

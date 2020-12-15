@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Visitor;
+use App\Voucher;
 
+use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -30,6 +32,50 @@ class VisitorController extends Controller
     public function create()
     {
         //
+    }
+
+    public function voucher(Request $request, $id) {
+        $voucherExists = Voucher::where('visitor_id', $id)
+            ->where('active', true)
+            ->limit(1)
+            ->get();
+
+        if (count($voucherExists) > 0) {
+            Voucher::where('visitor_id', $id)
+                ->where('active', true)
+                ->update([
+                    'updated_at' => date("Y-m-d H:i:s")
+                ]);
+
+           return response()->json([
+               'message' => 'Voucher gerado com sucesso!',
+               'voucher' => $voucherExists 
+           ]);
+        }
+
+        $voucherAvailable = Voucher::where('visitor_id', null)
+            ->where('active', true)
+            ->limit(1)
+            ->get();
+        
+        if (count($voucherAvailable) > 0) {
+
+            Voucher::where('id', $voucherAvailable[0]['id'])
+                ->update([
+                    'updated_at' => date("Y-m-d H:i:s"),
+                    'visitor_id' => $id
+                ]);
+
+            return response()->json([
+                'message' => 'Voucher gerado com sucesso!',
+                'voucher' => $voucherAvailable 
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Não existe vouchers disponíveis',
+            'voucher' => []
+        ]);
     }
 
     /**

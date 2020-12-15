@@ -14,8 +14,54 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function() {
+    $('.generateVoucher').click(function(event) {
+        var visitor_id = $(this).attr('data-visitor-id');
+  
+        $.ajax({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          type: 'PUT',
+          url: '/visitors/' + visitor_id + '/voucher',
+          data: { visitor_id: visitor_id },
+          success: function(data) {
+            
+  
+            if (data.voucher.length) {
+              $('.message-title').text(data.message).addClass('text-success');
+              $('.message-body').text(data.voucher[0].voucher);
+            } else {
+              $('.message-title').text(data.message).addClass('text-warning');
+              $('.message-body').text("");
+            }
+  
+            
+          },
+          error: function(err) {
+            $('.message-title').text('Erro ao gerar seu voucher!').addClass('text-danger');
+            $('.message-body').text(':(').addClass('text-danger');
+          }
+        });
+      });
+  
+      $('[data-dismiss=modal]').click(function() {
+        setTimeout(function(){ 
+          $('.message-title').text('Estamos gerando seu voucher!')
+            .removeClass('text-danger')
+            .removeClass('text-warning')
+            .removeClass('text-success');
+          $('.message-body').text('Aguarde...')
+            .removeClass('text-danger')
+            .removeClass('text-warning')
+            .removeClass('text-success');
+        }, 0);
+      })
+});
+
 $(document).ready(function($){
-    $('#cpf').mask("999.999.999-99");
+   $('#cpf').mask("999.999.999-99");
+   $('.showCPF').mask("999.999.999-99");
    //Executa a requisição quando o campo username perder o foco
    $('#cpf').blur(function()
    {

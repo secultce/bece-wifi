@@ -78,10 +78,10 @@
                               <tr>
                                 <td>{{ $v->id }}</td>
                                 <td>{{ $v->voucher }}</td>
-                                <td>{{ isset($v->visitor) ? $v->visitor->name: "" }}</td>
-                                <td class="showCPF">{{ isset($v->visitor) ? $v->visitor->cpf: "" }}</td>
+                                <td>{{ isset($v->visitor) ? $v->visitor->name: "-" }}</td>
+                                <td class="showCPF">{{ isset($v->visitor) ? $v->visitor->cpf: "-" }}</td>
                                 <td>{{ date('d-m-Y' , strtotime($v->created_at)) }}</td>
-                                <td>{{ $v->updated_at ? date('d-m-Y' , strtotime($v->updated_at)): "" }}</td>
+                                <td>{{ $v->updated_at ? date('d-m-Y' , strtotime($v->updated_at)): "-" }}</td>
                                 <td>{{ $v->active ? "Sim": "Não" }}</td>
                               </tr>
                           @endforeach

@@ -12,15 +12,20 @@
 */
 
 Route::get('/', 'Auth\LoginController@index');
-Route::get('/login', 'Auth\LoginController@index');
-Route::post('/logincontroller', 'Auth\LoginController@enviar');
-Route::get('/vouchers', 'VoucherController@index');
-Route::get('/users', 'UserController@index');
-Route::get('/visitors', 'VisitorController@index');
+Route::get('/login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@index']);
+Route::get('/logout', [ 'as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+Route::post('/authenticate', 'Auth\LoginController@authenticate');
 
-Route::post('/visitors', 'VisitorController@store');
-Route::put('/visitors/{id}/voucher', 'VisitorController@voucher');
-Route::put('/visitors/{id}', 'VisitorController@update');
+
+Route::get('/users', 'UserController@index')->middleware('auth');
+
+Route::get('/visitors', 'VisitorController@index')->middleware('auth');
+Route::post('/visitors', 'VisitorController@store')->middleware('auth');
+Route::put('/visitors/{id}/voucher', 'VisitorController@voucher')->middleware('auth');
+Route::put('/visitors/{id}', 'VisitorController@update')->middleware('auth');
+
+Route::get('/vouchers', 'VoucherController@index')->middleware('auth');
+Route::post('/vouchers', 'VoucherController@store')->middleware('auth');
 
 
 

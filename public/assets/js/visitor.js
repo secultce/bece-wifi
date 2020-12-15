@@ -9,8 +9,10 @@ $(document).ready(function () {
 
 $(document).ready(function(){
     $('#myTable').dataTable({
-        "infoEmpty":      "Mostrando 0 a 0 de 0 registros",
-        "infoFiltered":   "(filtered from _MAX_ total entries)",
+        "pagingType": "simple",
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Portuguese-Brasil.json'
+        }
     });
 });
 
@@ -60,12 +62,12 @@ $(document).ready(function() {
 });
 
 $(document).ready(function($){
-   $('#cpf').mask("999.999.999-99");
-   $('.showCPF').mask("999.999.999-99");
+    $('.showCPF').mask("999.999.999-99");
+    $('.cpfOuCnpj').mask("999.999.999-99");
    //Executa a requisição quando o campo username perder o foco
-   $('#cpf').blur(function()
+   $('.cpfOuCnpj').blur(function()
    {
-       var cpf = $('#cpf').val().replace(/[^0-9]/g, '').toString();
+       var cpf = $(this).val().replace(/[^0-9]/g, '').toString();
        
        if( cpf.length == 11 )
        {
@@ -90,27 +92,17 @@ $(document).ready(function($){
            {
                alert('CPF inválido: ' + cpf);
 
-               $('#cpf').val('');
-               $('#cpf').focus();
+               $(this).val('');
+               $(this).focus();
            }
        }
        else
        {
            alert('CPF inválido:' + cpf);
 
-           $('#cpf').val('');
-           $('#cpf').focus();
+           $(this).val('');
+           $(this).focus();
        }
    });
 
-  
-  // $('.form-control.cpfOuCnpj').blur(function () {
-  //   var id=$(this).attr("id");
-  //   var val=$(this).val();
-  //   var pattern = new RegExp(/[0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2}/);
-
-  //   if(val.match(pattern) == null){
-  //     $("#"+id+"_error").html("Digite um CPF válido");
-  //   }
-  // });
 });

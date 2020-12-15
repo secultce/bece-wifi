@@ -10,37 +10,28 @@
 </head>
 <body>
     <div id="wrapper" class="animate">
-        <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
-          <span class="navbar-toggler-icon leftmenutrigger"></span>
-          <a class="navbar-brand" href="#">SECULT PF SENSE</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav animate side-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8000/visitors">Visitantes
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8000/vouchers">Vouchers</a>
-              </li>
-              {{-- <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8000/users">Usuários</a>
-              </li> --}}
-              <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8000/login">Sair</a>
-              </li>
-            </ul>
-            
-          </div>
-        </nav>
+      @include('layouts/menu')
         <div class="container-fluid">
           <div class="container">
             <div class="row">
                 <div class="col-md-12 col-md-offset-1">
+                @if(Request::get('status') == 'success')
+                  <div class="alert alert-success" role="alert">
+                    {{ Request::get('message') }}    
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>        
+                  </div>
+                @endif
+
+                @if(Request::get('status') == 'error')
+                  <div class="alert alert-danger" role="alert">
+                    {{ Request::get('message') }}    
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>        
+                  </div>
+                @endif
                     <div class="panel panel-default panel-table">
                       <div class="panel-heading">
                         <div class="row">
@@ -48,14 +39,11 @@
                             <h3 class="panel-title">Registro de Vouchers</h3>
                           </div>
                           <div class="col col-xs-6 text-right">   
-                            {{-- <a href="#" class="btn btn-primary btn-xs pull-right" id="add-visitor"></a> --}}
-                                                    
-                            
-   
-                          <label class="btn btn-primary" for="my-file-selector">
-                              <input id="my-file-selector" type="file" class="d-none">
-                              Importar Voucher
-                          </label>
+                          <form method="post" action="{{ url('vouchers') }}" enctype="multipart/form-data">
+                            @csrf
+                            <label class="btn btn-primary" for="vouchers">Importar Voucher </label>
+                            <input id="vouchers" name="vouchers" type="file" class="d-none" onchange="this.form.submit()" >
+                          </form>
                           </div>
                         </div>
                       </div>

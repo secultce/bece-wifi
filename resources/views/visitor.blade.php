@@ -14,34 +14,8 @@
 <body>
   <div id="wrapper" class="animate">
       
+   @include('layouts/menu')
     
-    <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
-      <span class="navbar-toggler-icon leftmenutrigger"></span>
-      <a class="navbar-brand" href="#">SECULT PF SENSE</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav animate side-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="http://localhost:8000/visitors">Visitantes
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="http://localhost:8000/vouchers">Vouchers</a>
-          </li>
-          {{-- <li class="nav-item">
-            <a class="nav-link" href="http://localhost:8000/users">Usuários</a>
-          </li> --}}
-          <li class="nav-item">
-            <a class="nav-link" href="http://localhost:8000/login">Sair</a>
-          </li>
-        </ul>
-
-      </div>
-    </nav>
     <div class="container-fluid">
       <div class="container">
         <div class="row">
@@ -132,8 +106,8 @@
                                 <div class="form-group">
                                   <label for="cpf" class="text-info">CPF:</label><br>
                                   <div class="input-group mb-2">
-                      
-                                    <input type="text" class="form-control cpfOuCnpj" name="cpf" value="{{$v->cpf}}" required>
+                                   <input type="text" class="form-control cpfOuCnpj" name="cpf" id="cpf" placeholder="xxx.xxx.xxx-xx" value="{{$v->cpf}}" required>
+                                    
                                   </div>
                                 </div>
                       

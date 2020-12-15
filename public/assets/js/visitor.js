@@ -9,8 +9,10 @@ $(document).ready(function () {
 
 $(document).ready(function(){
     $('#myTable').dataTable({
-        "infoEmpty":      "Mostrando 0 a 0 de 0 registros",
-        "infoFiltered":   "(filtered from _MAX_ total entries)",
+        "pagingType": "simple",
+        "language": {
+            "url": 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Portuguese-Brasil.json'
+        }
     });
 });
 

@@ -131,8 +131,8 @@
                                 <div class="form-group">
                                   <label for="cpf" class="text-info">CPF:</label><br>
                                   <div class="input-group mb-2">
-                      
-                                    <input type="text" class="form-control cpfOuCnpj" name="cpf" value="{{$v->cpf}}" required>
+                                   <input type="text" class="form-control cpfOuCnpj" name="cpf" id="cpf" placeholder="xxx.xxx.xxx-xx" value="{{$v->cpf}}" required>
+                                    
                                   </div>
                                 </div>
                       

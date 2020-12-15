@@ -15,11 +15,11 @@ $(document).ready(function(){
 });
 
 $(document).ready(function($){
-    $('#cpf').mask("999.999.999-99");
+    $('.cpfOuCnpj').mask("999.999.999-99");
    //Executa a requisição quando o campo username perder o foco
-   $('#cpf').blur(function()
+   $('.cpfOuCnpj').blur(function()
    {
-       var cpf = $('#cpf').val().replace(/[^0-9]/g, '').toString();
+       var cpf = $(this).val().replace(/[^0-9]/g, '').toString();
        
        if( cpf.length == 11 )
        {
@@ -44,27 +44,17 @@ $(document).ready(function($){
            {
                alert('CPF inválido: ' + cpf);
 
-               $('#cpf').val('');
-               $('#cpf').focus();
+               $(this).val('');
+               $(this).focus();
            }
        }
        else
        {
            alert('CPF inválido:' + cpf);
 
-           $('#cpf').val('');
-           $('#cpf').focus();
+           $(this).val('');
+           $(this).focus();
        }
    });
 
-  
-  // $('.form-control.cpfOuCnpj').blur(function () {
-  //   var id=$(this).attr("id");
-  //   var val=$(this).val();
-  //   var pattern = new RegExp(/[0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2}/);
-
-  //   if(val.match(pattern) == null){
-  //     $("#"+id+"_error").html("Digite um CPF válido");
-  //   }
-  // });
 });

@@ -89,20 +89,28 @@ class VisitorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $clean_CPF = clean_CPF($request->input('cpf'));
 
-        $visitorExists = Visitor::where('cpf', $clean_CPF)->get();
-
-        if (!count($visitorExists) > 0) {
-            Visitor::where('id', $id)->update([
-                'name' => $request->input('name'),
-                'cpf' => $clean_CPF
-            ]);
-
-            return Redirect::to('/visitors?status=success&message=Visitante atualizado com sucesso!');
+        //Validar Id
+        $visitorExists = Visitor::where('id', $id)->get();
+        if (count($visitorExists) == 0) {
+            return Redirect::to('/visitors?status=error&message=Visitante não encontrado!');    
         }
 
-        return Redirect::to('/visitors?status=error&message=Já existe um visitante usando este CPF!');
+        //Validar CPF
+        $clean_CPF = clean_CPF($request->input('cpf'));
+        $visitorCPFExists = Visitor::where('cpf', $clean_CPF)->get();
+        if (count($visitorCPFExists) > 0 && $visitorCPFExists[0]->id != $id) {
+            return Redirect::to('/visitors?status=error&message= O CPF informado já existe no sistema!'); 
+        }       
+        
+        //Update
+        Visitor::where('id', $id)->update([
+            'name' => $request->input('name'),
+            'cpf' => $clean_CPF
+        ]);
+
+        return Redirect::to('/visitors?status=success&message=Visitante atualizado com sucesso!');
+        
     }
 
     /**

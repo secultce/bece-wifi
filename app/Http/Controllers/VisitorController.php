@@ -35,45 +35,26 @@ class VisitorController extends Controller
     }
 
     public function voucher(Request $request, $id) {
-        $voucherExists = Voucher::where('visitor_id', $id)
-            ->where('active', true)
+        $voucherAvailable = Voucher::where('active', true)
+            ->where('visitor_id', null)
             ->limit(1)
             ->get();
 
-        if (count($voucherExists) > 0) {
-            Voucher::where('visitor_id', $id)
-                ->where('active', true)
-                ->update([
-                    'updated_at' => date("Y-m-d H:i:s")
-                ]);
-
-           return response()->json([
-               'message' => 'Voucher gerado com sucesso!',
-               'voucher' => $voucherExists 
-           ]);
-        }
-
-        $voucherAvailable = Voucher::where('visitor_id', null)
-            ->where('active', true)
-            ->limit(1)
-            ->get();
-        
         if (count($voucherAvailable) > 0) {
-
             Voucher::where('id', $voucherAvailable[0]['id'])
                 ->update([
-                    'updated_at' => date("Y-m-d H:i:s"),
+                    'active' => false,
                     'visitor_id' => $id
                 ]);
 
             return response()->json([
                 'message' => 'Voucher gerado com sucesso!',
-                'voucher' => $voucherAvailable 
+                'voucher' => $voucherAvailable
             ]);
-        }
+        } 
 
         return response()->json([
-            'message' => 'Não existe vouchers disponíveis',
+            'message' => 'Nenhum voucher disponível!',
             'voucher' => []
         ]);
     }
@@ -135,28 +116,20 @@ class VisitorController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $clean_CPF = clean_CPF($request->input('cpf'));
 
-        //Validar Id
-        $visitorExists = Visitor::where('id', $id)->get();
-        if (count($visitorExists) == 0) {
-            return Redirect::to('/visitors?status=error&message=Visitante não encontrado!');    
+        $visitorExists = Visitor::where('cpf', $clean_CPF)->get();
+
+        if (!count($visitorExists) > 0) {
+            Visitor::where('id', $id)->update([
+                'name' => $request->input('name'),
+                'cpf' => $clean_CPF
+            ]);
+
+            return Redirect::to('/visitors?status=success&message=Visitante atualizado com sucesso!');
         }
 
-        //Validar CPF
-        $clean_CPF = clean_CPF($request->input('cpf'));
-        $visitorCPFExists = Visitor::where('cpf', $clean_CPF)->get();
-        if (count($visitorCPFExists) > 0 && $visitorCPFExists[0]->id != $id) {
-            return Redirect::to('/visitors?status=error&message= O CPF informado já existe no sistema!'); 
-        }       
-        
-        //Update
-        Visitor::where('id', $id)->update([
-            'name' => $request->input('name'),
-            'cpf' => $clean_CPF
-        ]);
-
-        return Redirect::to('/visitors?status=success&message=Visitante atualizado com sucesso!');
-        
+        return Redirect::to('/visitors?status=error&message=Já existe um visitante usando este CPF!');
     }
 
     /**

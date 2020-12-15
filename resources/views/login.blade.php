@@ -17,7 +17,7 @@
                     <img id="img" src="{{asset('assets/img/secult.png')}}" width="300px" height="150px">
                 </div>
                 <h1>Entre com sua conta de email</h1>
-                    <form role="form" action="{{url('logincontroller')}}" method="post" id="login-form" autocomplete="off">
+                    <form role="form" action="{{url('authenticate')}}" method="post" id="login-form" autocomplete="off">
                         @csrf
                         <div class="form-group">
                             <label for="email" class="sr-only">Email</label>
@@ -40,9 +40,7 @@
                                 </div>
                             @endif
                         @endforeach
-                        {{-- <a href="http://localhost:8000/visitors" class='btn btn-custom btn-lg btn-block'>
-                            Conecte-se
-                        </a> --}}
+                        
                         <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Conecte-se">
                     </form>
                     <!-- <a href="javascript:;" class="forget" data-toggle="modal" data-target=".forget-modal">Esqueci minha senha?</a> -->

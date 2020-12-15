@@ -18,12 +18,12 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'wylder',
             'email' => 'benrainir@gmail.com',
-            'password' => md5('password'),
+            'password' =>  Hash::make('password'),
         ]);
         DB::table('users')->insert([
             'name' => 'wylder',
             'email' => 'mario@gmail.com',
-            'password' => md5('password'),
+            'password' =>  Hash::make('password'),
         ]);
     }
 }

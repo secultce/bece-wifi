@@ -14,7 +14,10 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url('vouchers')}}">Vouchers</a>
-          </li>          
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('users')}}">Users</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url('logout')}}">Sair</a>
           </li>

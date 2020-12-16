@@ -18,6 +18,8 @@ Route::post('/authenticate', 'Auth\LoginController@authenticate');
 
 
 Route::get('/users', 'UserController@index')->middleware('auth');
+Route::post('/users', 'UserController@store')->middleware('auth');
+Route::put('/users/{id}', 'UserController@update')->middleware('auth');
 
 Route::get('/visitors', 'VisitorController@index')->middleware('auth');
 Route::post('/visitors', 'VisitorController@store')->middleware('auth');

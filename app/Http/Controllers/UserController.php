@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\models\User;
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
-{   
+{
     // /**
     //  * Create a new controller instance.
     //  *
     //  * @return void
     //  */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Display a listing of the resource.
@@ -25,7 +24,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user');
+        $users = User::get();
+
+        return view('user', ['users' => $users]);
+        //return view('user');
     }
 
     /**
@@ -46,9 +48,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // $user = new User([
-            
-        // ])
+        $user = new User;
+
+        $clean_CPF = clean_CPF($request->input('cpf'));
+
+        $userExists = User::where('cpf', $clean_CPF)->get();
+
+        if (!count($userExists) > 0) {
+            $user->create([
+                'name' => $request->input('name'),
+                'cpf' => $clean_CPF
+            ]);
+
+            return Redirect::to('/user?status=success&message=Usuário cadastrado com sucesso!');
+        }
+
+        return Redirect::to('/user?status=error&message=Já existe um Usuário com este CPF cadastrado!');
     }
 
     /**
@@ -82,7 +97,20 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $clean_CPF = clean_CPF($request->input('cpf'));
+
+        $usersExists = User::where('cpf', $clean_CPF)->get();
+
+        if (!count($usersExists) > 0) {
+            User::where('id', $id)->update([
+                'name' => $request->input('name'),
+                'cpf' => $clean_CPF
+            ]);
+
+            return Redirect::to('/users?status=success&message=Usuário atualizado com sucesso!');
+        }
+
+        return Redirect::to('/users?status=error&message=Já existe um usuário usando este CPF!');
     }
 
     /**

@@ -2,10 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Voucher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class VoucherController extends Controller
 {
+    // /**
+    //  * Create a new controller instance.
+    //  *
+    //  * @return void
+    //  */
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +25,9 @@ class VoucherController extends Controller
      */
     public function index()
     {
-        return view('voucher');
+        $vouchers = Voucher::with('visitor')->get();
+
+        return view('voucher', ['vouchers' => $vouchers]);
     }
 
     /**
@@ -34,7 +48,44 @@ class VoucherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(!$request->hasfile('vouchers')) {
+            return Redirect::to("/vouchers?status=error&message=Arquivo invalido ou nao enviado!");
+        }
+
+        //CAMINHO DO ARQUIVO UPLOAD
+        $filePathTmp = $request->file('vouchers')->getPathName();
+        
+        //ABRIR ARQUIVO 
+        $arquivo = fopen($filePathTmp, 'r');
+
+        //LENDO HEADER
+        $headerFile = "";
+        for($i=0;$i<7;$i++) $headerFile = fgets($arquivo, 1024);
+                
+        //CADASTRANDO VOUCHERS
+        $counter = 0;
+        while(!feof($arquivo)) {
+            $txtVoucher = preg_replace("/[^a-zA-Z0-9]+/", "", fgets($arquivo, 1024));
+            
+            $voucherExists = Voucher::where('voucher', $txtVoucher)->get();
+            if (count($voucherExists) == 0) {
+                $counter ++;
+                $voucher = new Voucher;
+                $voucher->create([
+                    'voucher' => $txtVoucher,
+                    'active' => true
+                ]);
+            }
+        }
+
+        // Fecha arquivo aberto
+        fclose($arquivo);
+
+        if ($counter == 0) {
+            return Redirect::to("/vouchers?status=error&message= Nenhum voucher cadastrado!");
+        }
+
+        return Redirect::to("/vouchers?status=success&message= {$counter} Voucher(s) cadastrado(s) com sucesso!");
     }
 
     /**

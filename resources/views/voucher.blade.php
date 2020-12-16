@@ -6,41 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('site/style.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/visitor.css')}}"> 
-    <title>User Page</title>
+    <title>Vouchers</title>
 </head>
 <body>
     <div id="wrapper" class="animate">
-        <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
-          <span class="navbar-toggler-icon leftmenutrigger"></span>
-          <a class="navbar-brand" href="#">SECULT PF SENSE</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav animate side-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8000/visitor">Visitantes
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8000/voucher">Vouchers</a>
-              </li>
-              {{-- <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8000/users">Usuários</a>
-              </li> --}}
-              <li class="nav-item">
-                <a class="nav-link" href="http://localhost:8000/login">Sair</a>
-              </li>
-            </ul>
-            
-          </div>
-        </nav>
+      @include('layouts/menu')
         <div class="container-fluid">
           <div class="container">
             <div class="row">
                 <div class="col-md-12 col-md-offset-1">
+                @if(Request::get('status') == 'success')
+                  <div class="alert alert-success" role="alert">
+                    {{ Request::get('message') }}    
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>        
+                  </div>
+                @endif
+
+                @if(Request::get('status') == 'error')
+                  <div class="alert alert-danger" role="alert">
+                    {{ Request::get('message') }}    
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>        
+                  </div>
+                @endif
                     <div class="panel panel-default panel-table">
                       <div class="panel-heading">
                         <div class="row">
@@ -48,14 +39,11 @@
                             <h3 class="panel-title">Registro de Vouchers</h3>
                           </div>
                           <div class="col col-xs-6 text-right">   
-                            {{-- <a href="#" class="btn btn-primary btn-xs pull-right" id="add-visitor"></a> --}}
-                                                    
-                            
-   
-                          <label class="btn btn-primary" for="my-file-selector">
-                              <input id="my-file-selector" type="file" class="d-none">
-                              Importar Voucher
-                          </label>
+                          <form method="post" action="{{ url('vouchers') }}" enctype="multipart/form-data">
+                            @csrf
+                            <label class="btn btn-primary" for="vouchers">Importar Voucher </label>
+                            <input id="vouchers" name="vouchers" type="file" class="d-none" onchange="this.form.submit()" >
+                          </form>
                           </div>
                         </div>
                       </div>
@@ -74,18 +62,17 @@
                                   <th>Ativo</th>
                               </tr>
                           </thead>
+                          @foreach ($vouchers as $v)
                               <tr>
-                                  <td>1</td>
-                                  <td>qwe54qwa1sdas2d156qw4eqw546</td>
-                                  <td>Mario</td>
-                                  <td>0000000000000</td>
-                                  <td>11-07-2020</td>
-                                  <td>11-08-2021</td>
-                                  <td>Ativo</td>
+                                <td>{{ $v->id }}</td>
+                                <td>{{ $v->voucher }}</td>
+                                <td>{{ isset($v->visitor) ? $v->visitor->name: "-" }}</td>
+                                <td class="showCPF">{{ isset($v->visitor) ? $v->visitor->cpf: "-" }}</td>
+                                <td>{{ date('d-m-Y' , strtotime($v->created_at)) }}</td>
+                                <td>{{ $v->updated_at ? date('d-m-Y' , strtotime($v->updated_at)): "-" }}</td>
+                                <td>{{ $v->active ? "Sim": "Não" }}</td>
                               </tr>
-                               
-                              
-
+                          @endforeach
                       </table>
                     
                       </div>
@@ -101,7 +88,7 @@
     <script src="{{asset('site/jquery.js')}}"></script>
     <script src="{{asset('site/dataTables.js')}}"></script>
     <script src="{{asset('site/bootstrap.js')}}"></script>
-    <script src="{{ asset('assets/js/visitor.js')}}"></script>
+    <script src="{{ asset('assets/js/voucher.js')}}"></script>
     <script src="{{ asset('assets/js/home.js')}}"></script>
         
 </body>

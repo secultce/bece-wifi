@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="{{ asset('site/style.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/css/visitor.css')}}">
   <title>Visitantes</title>
@@ -12,33 +13,9 @@
 
 <body>
   <div id="wrapper" class="animate">
-    <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
-      <span class="navbar-toggler-icon leftmenutrigger"></span>
-      <a class="navbar-brand" href="#">SECULT PF SENSE</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav animate side-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="http://localhost:8000/visitor">Visitantes
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="http://localhost:8000/vouchers">Vouchers</a>
-          </li>
-          {{-- <li class="nav-item">
-            <a class="nav-link" href="http://localhost:8000/users">Usuários</a>
-          </li> --}}
-          <li class="nav-item">
-            <a class="nav-link" href="http://localhost:8000/login">Sair</a>
-          </li>
-        </ul>
-
-      </div>
-    </nav>
+      
+   @include('layouts/menu')
+    
     <div class="container-fluid">
       <div class="container">
         <div class="row">
@@ -95,7 +72,7 @@
                       <td>{{ $v->name }}</td>
                       <td class="showCPF">{{ $v->cpf }}</td>
                       <td class="text-center">
-                        <a class='btn btn-info btn-xs' href="#" data-toggle="modal" data-target="#modalGerarVoucher">
+                        <a class='btn btn-info btn-xs generateVoucher' href="#" data-toggle="modal" data-visitor-id="{{ $v->id }}" data-target="#modalGerarVoucher">
                           <span class="glyphicon glyphicon-edit"></span> 
                           Gerar Novo Voucher
                         </a> 
@@ -129,8 +106,8 @@
                                 <div class="form-group">
                                   <label for="cpf" class="text-info">CPF:</label><br>
                                   <div class="input-group mb-2">
-                      
-                                    <input type="text" class="form-control cpfOuCnpj" name="cpf" value="{{$v->cpf}}" required>
+                                   <input type="text" class="form-control cpfOuCnpj" name="cpf" id="cpf" placeholder="xxx.xxx.xxx-xx" value="{{$v->cpf}}" required>
+                                    
                                   </div>
                                 </div>
                       
@@ -194,7 +171,7 @@
               <label for="cpf" class="text-info">CPF:</label><br>
               <div class="input-group mb-2">
   
-                <input type="text" class="form-control cpfOuCnpj" name="cpf" placeholder="xxx.xxx.xxx-xx" required>
+                <input type="text" class="form-control cpfOuCnpj" name="cpf" id="cpf" placeholder="xxx.xxx.xxx-xx" required>
               </div>
             </div>
   
@@ -208,20 +185,20 @@
       </div>
     </div>
   </div>
-  <!--MODAL GERAR VOUCHER-->
-   <div class="modal fade" id="modalGerarVoucher" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+   <!--MODAL GERAR VOUCHER-->
+  <div class="modal fade" id="modalGerarVoucher" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header text-center">
-          <h4 class="modal-title w-100 font-weight-bold">Voucher gerado com sucesso!</h4>
+          <h4 class="modal-title w-100 font-weight-bold message-title">Estamos gerando seu voucher!</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body mx-3">
           <div class="text-center">
-            <h3>QEUQWUIDASHDAS456454</h3>
+            <h3 class="message-body">Aguarde...</h3>
           </div>
             
        

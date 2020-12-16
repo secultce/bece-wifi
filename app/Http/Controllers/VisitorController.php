@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Visitor;
+use App\Voucher;
 
+use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class VisitorController extends Controller
-{
+{   
+
     /**
      * Display a listing of the resource.
      *
@@ -29,6 +32,31 @@ class VisitorController extends Controller
     public function create()
     {
         //
+    }
+
+    public function voucher(Request $request, $id) {
+        $voucherAvailable = Voucher::where('active', true)
+            ->where('visitor_id', null)
+            ->limit(1)
+            ->get();
+
+        if (count($voucherAvailable) > 0) {
+            Voucher::where('id', $voucherAvailable[0]['id'])
+                ->update([
+                    'active' => false,
+                    'visitor_id' => $id
+                ]);
+
+            return response()->json([
+                'message' => 'Voucher gerado com sucesso!',
+                'voucher' => $voucherAvailable
+            ]);
+        } 
+
+        return response()->json([
+            'message' => 'Nenhum voucher disponível!',
+            'voucher' => []
+        ]);
     }
 
     /**

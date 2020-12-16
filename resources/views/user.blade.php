@@ -85,12 +85,6 @@
               <input type="text" class="form-control" id="nome" name="name" placeholder="fulano@email.com" required>
             </div>
           </div>
-            <div class="form-group">
-              <label for="cpf" class="text-info">CPF:</label><br>
-              <div class="input-group mb-2">
-                <input type="text" class="form-control cpfOuCnpj" name="cpf" id="cpf" placeholder="xxx.xxx.xxx-xx" value="{{$u->cpf}}" required>
-              </div>
-            </div>
                 <input type="radio" id="admin" name="tipo" value="admin">
                     <label for="admin">Admin</label><br>
                 <input type="radio" id="padrão" name="tipo" value="padrão">

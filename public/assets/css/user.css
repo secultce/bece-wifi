@@ -12,12 +12,12 @@ body{background:#f9f9f9;}
 }
 .animate{-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;transition:all .3s ease-in-out}
 
-a#add-visitor {
+a#add-user {
     margin-left: 50%;
 }
 a#sair {
-    /* margin-block-end: 13px; */
-    margin-left: 75%;
+    margin-block-end: 13px;
+    margin-left: 25%;
 }
 div#wrapper {
     background-color: white;
@@ -25,3 +25,7 @@ div#wrapper {
 html {
     background-color: white;
 }
+.panel-table .panel-body{
+    padding:0;
+  }
+

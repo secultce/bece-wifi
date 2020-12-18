@@ -10,15 +10,13 @@
     <title>User Page</title>
 </head>
 <body>
-    <div id="wrapper" class="animate">
-      @include('layouts/menu')
-      <div class="col col-xs-6 text-right">
-        <a href="" class="btn btn-primary btn-xs pull-right" id="add-user" data-toggle="modal"
-        data-target="#modalCadastrarUser"><b> + </b>Cadastrar Usuário</a>
-        </div>
+@extends('layouts.app')
+@section('content')
+        @include('layouts/menu')
+        <!-- <div id="wrapper" class="animate"> -->
         <div class="container-fluid">
-          <div class="row">
-            <div class="col">
+          <div class="row justify-content-center">
+            <div class="col-8">
               <div class="card">
                 <div class="card-body">
                   <h3 class="card-title">Registro de Usuário</h3>
@@ -51,16 +49,16 @@
                         </tr>
                     @endif
                     </tbody>
-                  </table>
+                   </table>
                 </div>
               </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+    <!-- </div> -->
 
 <!-- MODAL FORM CADASTRO DO USUÁRIO-->
-  <div class="modal fade" id="modalCadastrarUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+   <div class="modal fade" id="modalCadastrarUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -70,19 +68,31 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <!-- <form method="post" action="{{ url("users{$u->id}") }}"> -->
+        <form method="post" action="{{ url('users') }}">
         @csrf
         <div class="modal-body mx-3">
-          <div class="form-group">
-            <label for="nomeVisitante" class="text-info">Nome do Usuário:</label><br>
+          <div class="form-group" required>
+            <label for="nomeVisitante" class="text-info">Nome do usuário:</label><br>
             <div class="input-group mb-2">
               <input type="text" class="form-control" id="nome" name="name" placeholder="Fulano da Silva" required>
             </div>
           </div>
-          <div class="form-group">
-            <label for="nomeVisitante" class="text-info">Email do Usuário:</label><br>
+          <div class="form-group" required>
+            <label for="nomeVisitante" class="text-info">Email do usuário:</label><br>
             <div class="input-group mb-2">
               <input type="text" class="form-control" id="nome" name="name" placeholder="fulano@email.com" required>
+            </div>
+          </div>
+          <div class="form-group" required>
+            <label for="nomeVisitante" class="text-info">Cadastre uma senha de usuário:</label><br>
+            <div class="input-group mb-2">
+              <input type="text" class="form-control" id="nome" name="name" placeholder="**********"  required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="nomeVisitante" class="text-info">Confirme sua senha de usuário:</label><br>
+            <div class="input-group mb-2">
+              <input type="text" class="form-control" id="nome" name="name" placeholder="**********" required>
             </div>
           </div>
                 <input type="radio" id="admin" name="tipo" value="admin">
@@ -98,8 +108,12 @@
       </div>
     </div>
   </div>
+  @endsection
     <script src="{{asset('site/jquery.js')}}"></script>
+    <script src="{{asset('site/dataTables.js')}}"></script>
     <script src="{{asset('site/bootstrap.js')}}"></script>
+    <script src="{{asset('site/mask.js')}}"></script>
+    <script src="{{ asset('assets/js/visitor.js')}}"></script>
     <script src="{{ asset('assets/js/home.js')}}"></script>
 </body>
 </html>

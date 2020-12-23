@@ -11,6 +11,30 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Auth\LoginController@index');
+Route::get('/login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@index']);
+Route::get('/logout', [ 'as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+Route::post('/authenticate', 'Auth\LoginController@authenticate');
+
+
+Route::get('/users', 'UserController@index')->middleware('auth');
+
+Route::get('/visitors', 'VisitorController@index')->middleware('auth');
+Route::post('/visitors', 'VisitorController@store')->middleware('auth');
+Route::put('/visitors/{id}/voucher', 'VisitorController@voucher')->middleware('auth');
+Route::put('/visitors/{id}', 'VisitorController@update')->middleware('auth');
+
+Route::get('/vouchers', 'VoucherController@index')->middleware('auth');
+Route::post('/vouchers', 'VoucherController@store')->middleware('auth');
+
+
+
+
+
+// Route::post('users', 'UserController');
+
+// Route::get('vouchers', 'UserController');
+
+// Auth::routes();
+
+// Route::get('/visitors', 'VisitorController@index')->name('visitor');

@@ -1,0 +1,86 @@
+body{background:#f9f9f9;}
+#wrapper{padding:90px 15px;}
+.navbar-expand-lg .navbar-nav.side-nav{flex-direction: column;}
+.card{margin-bottom: 15px; border-radius:0; box-shadow: 0 3px 5px rgba(0,0,0,.1); }
+.header-top{box-shadow: 0 3px 5px rgba(0,0,0,.1)}
+.leftmenutrigger{display: none}
+@media(min-width:992px) {
+.leftmenutrigger{display: block;display: block;margin: 7px 20px 4px 0;cursor: pointer;}
+#wrapper{padding: 90px 15px 15px 15px; }
+.navbar-nav.side-nav.open {left:0;}
+.navbar-nav.side-nav{background: #585f66;box-shadow: 2px 1px 2px rgba(0,0,0,.1);position:fixed;top:56px;flex-direction: column!important;left:-220px;width:200px;overflow-y:auto;bottom:0;overflow-x:hidden;padding-bottom:40px}
+}
+.animate{-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;transition:all .3s ease-in-out}
+
+div#search-id {
+
+}
+a#add-visitor {
+    margin-left: 50%;
+}
+a#sair {
+    /* margin-block-end: 13px; */
+    margin-left: 75%;
+}
+/* div#wrapper {
+    background-color: white;
+}
+html {
+    background-color: white;
+} */
+
+/**/
+.panel-table .panel-body{
+    padding:0;
+  }
+  
+  .panel-table .panel-body .table-bordered{
+    border-style: none;
+    margin:0;
+  }
+  
+  .panel-table .panel-body .table-bordered > thead > tr > th:first-of-type {
+      text-align:center;
+      width: 100px;
+  }
+  
+  .panel-table .panel-body .table-bordered > thead > tr > th:last-of-type,
+  .panel-table .panel-body .table-bordered > tbody > tr > td:last-of-type {
+    border-right: 0px;
+  }
+  
+  .panel-table .panel-body .table-bordered > thead > tr > th:first-of-type,
+  .panel-table .panel-body .table-bordered > tbody > tr > td:first-of-type {
+    border-left: 0px;
+  }
+  
+  .panel-table .panel-body .table-bordered > tbody > tr:first-of-type > td{
+    border-bottom: 0px;
+  }
+  
+  .panel-table .panel-body .table-bordered > thead > tr:first-of-type > th{
+    border-top: 0px;
+  }
+  
+  .panel-table .panel-footer .pagination{
+    margin:0; 
+  }
+  
+  /*
+  used to vertically center elements, may need modification if you're not using default sizes.
+  */
+  .panel-table .panel-footer .col{
+   line-height: 34px;
+   height: 34px;
+  }
+  
+  .panel-table .panel-heading .col h3{
+   line-height: 30px;
+   height: 30px;
+  }
+  
+  .panel-table .panel-body .table-bordered > tbody > tr > td{
+    line-height: 34px;
+  }
+
+  

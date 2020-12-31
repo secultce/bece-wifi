@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Visitor;
-use App\Voucher;
+use App\Model\Visitor;
+use App\Model\Voucher;
 
 use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class VisitorController extends Controller
-{   
+{
 
     /**
      * Display a listing of the resource.
@@ -51,7 +51,7 @@ class VisitorController extends Controller
                 'message' => 'Voucher gerado com sucesso!',
                 'voucher' => $voucherAvailable
             ]);
-        } 
+        }
 
         return response()->json([
             'message' => 'Nenhum voucher disponível!',

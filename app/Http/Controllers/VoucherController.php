@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Voucher;
+use App\Model\Voucher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -54,19 +54,19 @@ class VoucherController extends Controller
 
         //CAMINHO DO ARQUIVO UPLOAD
         $filePathTmp = $request->file('vouchers')->getPathName();
-        
-        //ABRIR ARQUIVO 
+
+        //ABRIR ARQUIVO
         $arquivo = fopen($filePathTmp, 'r');
 
         //LENDO HEADER
         $headerFile = "";
         for($i=0;$i<7;$i++) $headerFile = fgets($arquivo, 1024);
-                
+
         //CADASTRANDO VOUCHERS
         $counter = 0;
         while(!feof($arquivo)) {
             $txtVoucher = preg_replace("/[^a-zA-Z0-9]+/", "", fgets($arquivo, 1024));
-            
+
             $voucherExists = Voucher::where('voucher', $txtVoucher)->get();
             if (count($voucherExists) == 0) {
                 $counter ++;

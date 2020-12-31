@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +17,8 @@ Route::get('/login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@index'])
 Route::get('/logout', [ 'as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 Route::post('/authenticate', 'Auth\LoginController@authenticate');
 
-
+Route::get('/user/{id}', [UserController::class, 'show']);
+Route::get('/user', [UserController::class, 'index']);
 Route::get('/users', 'UserController@index')->middleware('auth');
 Route::post('/users', 'UserController@store')->middleware('auth');
 Route::put('/users/{id}', 'UserController@update')->middleware('auth');

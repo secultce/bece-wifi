@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('site/style.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/login.css')}}">
-    <title>Document</title>
+    <title>login</title>
 </head>
 <body>
 <section id="login">
@@ -14,8 +14,8 @@
     	    <div class="col-xl-12">
                <div class="form-wrap">
                 <div id="img-div">
-                    <img id="img" src="{{asset('assets/img/secult.png')}}" width="300px" height="150px">
-                </div>
+                    <img id="img" src="{{asset('assets/img/bece1.jpeg')}}" class="img-fluid" alt="Imagem responsiva" width="300px" height="150px">
+                </div></br>
                 <h1>Entre com sua conta de email</h1>
                     <form role="form" action="{{url('authenticate')}}" method="post" id="login-form" autocomplete="off">
                         @csrf
@@ -40,7 +40,7 @@
                                 </div>
                             @endif
                         @endforeach
-                        
+
                         <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Conecte-se">
                     </form>
                     <!-- <a href="javascript:;" class="forget" data-toggle="modal" data-target=".forget-modal">Esqueci minha senha?</a> -->

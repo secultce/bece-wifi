@@ -1,9 +1,6 @@
-<nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
+    <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
       <span class="navbar-toggler-icon leftmenutrigger"></span>
-      <a class="navbar-brand" href="#">SECULT WIFI PFSENSE</a>
-      <div class="col text-right">
-         <a href="" class="btn btn-primary btn-xs pull-right" id="add-user" data-toggle="modal"
-        data-target="#modalCadastrarUser"><b> + </b>Cadastrar Usuário</a>
+        <a class="navbar-brand"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

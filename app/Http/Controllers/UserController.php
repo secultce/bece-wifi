@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
@@ -27,7 +31,6 @@ class UserController extends Controller
         $users = User::get();
 
         return view('user', ['users' => $users]);
-        //return view('user');
     }
 
     /**
@@ -50,20 +53,32 @@ class UserController extends Controller
     {
         $user = new User;
 
-        $clean_CPF = clean_CPF($request->input('cpf'));
+        $email = $request->input('email');
 
-        $userExists = User::where('cpf', $clean_CPF)->get();
+        $p1 = $request->input('password');
+        $p2 = $request->input('password_verify');
 
-        if (!count($userExists) > 0) {
-            $user->create([
-                'name' => $request->input('name'),
-                'cpf' => $clean_CPF
-            ]);
-
-            return Redirect::to('/user?status=success&message=Usuário cadastrado com sucesso!');
+        //Verificadndo password
+        if ( $p1 != $p2 ){
+            return Redirect::to('/users?status=error&message=Senhas informadas não conferem');
         }
 
-        return Redirect::to('/user?status=error&message=Já existe um Usuário com este CPF cadastrado!');
+        $userByEmail = User::where('email', $email)->get();
+
+        //Verificadndo email
+        if (count($userByEmail) > 0) {
+             return Redirect::to('/users?status=error&message=Já existe um usuario cadastrado com este email!');
+        }
+
+       //Cadastrando novo usuario
+        $user->create([
+            'name' => $request->input('name'),
+            'email' =>  $request->input('email'),
+            'password' =>  Hash::make($request->input('password')),
+        ]);
+
+        return Redirect::to('/users?status=success&message=Usuario cadastrado com sucesso!');
+
     }
 
     /**
@@ -74,7 +89,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('user.profile', [
+            'user' => User::findOrFail($id)
+        ]);
     }
 
     /**
@@ -95,22 +112,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $clean_CPF = clean_CPF($request->input('cpf'));
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
 
-        $usersExists = User::where('cpf', $clean_CPF)->get();
+        $user->update($request->all());
 
-        if (!count($usersExists) > 0) {
-            User::where('id', $id)->update([
-                'name' => $request->input('name'),
-                'cpf' => $clean_CPF
-            ]);
-
-            return Redirect::to('/users?status=success&message=Usuário atualizado com sucesso!');
-        }
-
-        return Redirect::to('/users?status=error&message=Já existe um usuário usando este CPF!');
+        return redirect()->route('user.index')
+                        ->with('success','User updated successfully');
     }
 
     /**
@@ -119,8 +131,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('user.index')
+            ->with('success', 'User deleted successfully');
     }
 }
